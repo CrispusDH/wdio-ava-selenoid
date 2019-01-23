@@ -1,8 +1,7 @@
-// tslint:disable
-const { remote } = require('webdriverio');
+import { remote } from 'webdriverio';
 import anyTest, { TestInterface } from 'ava';
 
-const test = anyTest as TestInterface<{browser: any}>;
+const test = anyTest as TestInterface<{browser: WebDriver.Client<void> & WebdriverIO.Browser<void>}>;
 
 test.beforeEach('Setup browser', async (t) => {
   t.context.browser = await remote({
