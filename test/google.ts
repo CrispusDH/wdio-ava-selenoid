@@ -1,16 +1,11 @@
 import { remote } from 'webdriverio';
 import anyTest, { TestInterface } from 'ava';
+import { options } from '../src/utils/options';
 
 const test = anyTest as TestInterface<{browser: WebDriver.Client<void> & WebdriverIO.Browser<void>}>;
 
 test.beforeEach('Setup browser', async (t) => {
-  t.context.browser = await remote({
-    logLevel: 'error',
-    path: '/',
-    capabilities: {
-      browserName: 'chrome'
-    }
-  });
+  t.context.browser = await remote(options);
 });
 
 test.afterEach('Tear down', async (t) => {

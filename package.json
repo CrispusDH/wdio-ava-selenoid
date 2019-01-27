@@ -9,7 +9,7 @@
     "tslint": "5.12.1",
     "tslint-eslint-rules": "5.4.0",
     "ava": "1.1.0",
-    "webdriverio": "5.4.0",
+    "webdriverio": "5.4.7",
     "@types/node": "10.12.18"
   },
   "scripts": {
@@ -19,16 +19,27 @@
     "chromedriver:down": "lsof -ti tcp:4444 | xargs kill",
     "clean": "rm -rf dist",
     "pretest": "npm run build && npm run chromedriver:up",
-    "test": "npm run ava",
+    "test": "cross-env runningType=direct && npm run ava",
     "posttest": "npm run clean && npm run chromedriver:down",
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "npm run clean",
-    "build": "npm run lint && npm run tsc"
+    "build": "npm run lint && npm run tsc",
+    "cm:install": "curl -s https://aerokube.com/cm/bash | bash",
+    "selenoid:download": "./cm selenoid download",
+    "selenoid:configure": "./cm selenoid configure --browsers chrome --last-versions 1",
+    "selenoid:start": "./cm selenoid start",
+    "selenoid:stop": "./cm selenoid stop",
+    "selenoid:cleanup": "./cm selenoid cleanup",
+    "selenoid:rm": "docker rm -f $(docker ps -aq)",
+    "aftertest": "npm run selenoid:cleanup && npm run selenoid:stop && npm run selenoid:rm && npm run clean",
+    "preavaselenoid": "npm run build && npm run selenoid:download && npm run selenoid:configure && npm run selenoid:start",
+    "avaselenoid": "cross-env runningType=selenoid npm run ava && npm run aftertest || npm run aftertest"
   },
   "ava": {
     "files": [
-      "dist/**/*.js"
+      "dist/test/**/*.js"
     ],
-    "failWithoutAssertions": false
+    "failWithoutAssertions": false,
+    "verbose": true
   }
 }
