@@ -27,7 +27,7 @@
     "cm:install": "curl -s https://aerokube.com/cm/bash | bash",
     "selenoid:download": "./cm selenoid download",
     "selenoid:configure": "./cm selenoid configure --browsers chrome --last-versions 1",
-    "selenoid:start": "./cm selenoid start",
+    "selenoid:start": "./cm selenoid start --args \"--limit 5\"",
     "selenoid:stop": "./cm selenoid stop",
     "selenoid:cleanup": "./cm selenoid cleanup",
     "selenoid:rm": "docker rm -f $(docker ps -aq)",

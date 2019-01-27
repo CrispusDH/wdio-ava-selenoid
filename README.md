@@ -18,8 +18,4 @@ In this repo I try to run tests using wdio v5 as test framework and AVA as test 
 - download and configure `Selenoid`
 - run `ava` with `options` for running with `Selenoid`
 
-## Issue with AVA - Selenoid
-When I have one file with 3 tests - there is up and run three docker selenoid containers. It is `expected` behavior.
-When I have two files with 6 tests - there is up just one docker selenoid container with 6 browsers inside. 
-It is NOT expected behavior. I `expect` six docker selenoid containers.
-So for 1 browser should be 1 docker container.
+**Note**: specify total number of parallel sessions by -limit flag in `selenoid:start` npm script 
