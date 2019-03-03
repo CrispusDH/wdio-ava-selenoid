@@ -2,7 +2,7 @@ import { remote } from 'webdriverio';
 import anyTest, { TestInterface } from 'ava';
 import { options } from '../src/utils/options';
 
-const test = anyTest as TestInterface<{browser: WebDriver.Client<void> & WebdriverIO.Browser<void>}>;
+const test = anyTest as TestInterface<{browser: BrowserObject}>;
 
 test.beforeEach('Setup browser', async (t) => {
   t.context.browser = await remote(options);
