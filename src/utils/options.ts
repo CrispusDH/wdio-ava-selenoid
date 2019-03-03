@@ -17,7 +17,7 @@ export const selenoid: Options = {
   port: 4444,
   hostname: 'localhost',
   path: '/wd/hub',
-  logLevel: 'trace' as WebDriverLogTypes,
+  logLevel: 'error' as WebDriverLogTypes,
   capabilities: {
     browserName: 'chrome'
   }

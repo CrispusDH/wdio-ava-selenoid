@@ -13,19 +13,19 @@ test.afterEach('Tear down', async (t) => {
 });
 
 test('Check title #1', async (t) => {
-  await t.context.browser.url('https://webdriver.io');
+  await t.context.browser.url('https://google.com');
   const title = await t.context.browser.getTitle();
-  t.is(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js');
+  t.is(title, 'Google');
 });
 
 test('Check title #2', async (t) => {
-  await t.context.browser.url('https://webdriver.io');
+  await t.context.browser.url('https://google.com');
   const title = await t.context.browser.getTitle();
-  t.is(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js');
+  t.is(title, 'Google');
 });
 
 test('Check title #3', async (t) => {
-  await t.context.browser.url('https://webdriver.io');
+  await t.context.browser.url('https://google.com');
   const title = await t.context.browser.getTitle();
-  t.is(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js');
+  t.is(title, 'Google');
 });
