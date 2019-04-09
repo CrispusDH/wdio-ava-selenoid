@@ -15,6 +15,7 @@
     "array-type": [true, "generic"],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "max-line-length": [true, {"limit": 120, "ignore-pattern": "^import"}]
+    "max-line-length": [true, {"limit": 120, "ignore-pattern": "^import"}],
+    "member-access": [true, "no-public"]
   }
 }

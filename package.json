@@ -5,13 +5,14 @@
   "author": "Oleksii Ihnatiuk",
   "devDependencies": {
     "cross-env": "5.2.0",
-    "typescript": "3.3.3333",
-    "tslint": "5.13.1",
-    "tslint-xo": "0.15.0",
-    "ava": "1.2.1",
-    "webdriverio": "5.6.4",
-    "@types/node": "11.10.4",
-    "webdriver-manager": "12.1.1"
+    "typescript": "3.4.2",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint": "5.15.0",
+    "ava": "1.4.1",
+    "webdriverio": "5.7.9",
+    "@types/node": "11.13.2",
+    "webdriver-manager": "13.0.0",
+    "p-filter": "2.0.0"
   },
   "scripts": {
     "server:update": "webdriver-manager update --gecko false",
@@ -24,7 +25,7 @@
     "test": "cross-env runningType=direct && npm run ava",
     "avaselenoid": "cross-env runningType=selenoid npm run ava && npm run aftertest || npm run aftertest",
     "posttest": "npm run clean && npm run server:down",
-    "lint": "tslint --project tsconfig.json 'src/**/*.ts' 'test/**/*.ts'",
+    "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "preavaselenoid": "npm run clean && npm run lint && npm run tsc && npm run selenoid:download && npm run selenoid:configure && npm run selenoid:start",
     "aftertest": "npm run selenoid:cleanup && npm run selenoid:stop && npm run selenoid:rm && npm run clean",
     "cm:install": "curl -s https://aerokube.com/cm/bash | bash",
@@ -33,7 +34,7 @@
     "selenoid:start": "./cm selenoid start --args \"--limit 5\"",
     "selenoid:stop": "./cm selenoid stop",
     "selenoid:cleanup": "./cm selenoid cleanup",
-    "selenoid:rm": "docker rm -f $(docker ps -aq)"
+    "selenoid:rm": "docker rm -f $(docker ps -aq) || true"
   },
   "ava": {
     "files": [

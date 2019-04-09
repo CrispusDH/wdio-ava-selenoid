@@ -1,6 +1,8 @@
 import { remote } from 'webdriverio';
 import anyTest, { TestInterface } from 'ava';
 import { options } from '../src/utils/options';
+import { Landing } from '../src/page/landing';
+import { NavigationOptions } from '../src/module/header';
 
 const test = anyTest as TestInterface<{browser: BrowserObject}>;
 
@@ -12,20 +14,29 @@ test.afterEach('Tear down', async (t) => {
   await t.context.browser.deleteSession();
 });
 
-test('Check title #1', async (t) => {
-  await t.context.browser.url('https://google.com');
-  const title = await t.context.browser.getTitle();
-  t.is(title, 'Google');
+test('Check Guide reference', async (t) => {
+  const browser = t.context.browser;
+  await t.context.browser.url('https://webdriver.io/');
+  const page = new Landing();
+  await page.header.navigate(NavigationOptions.Guide);
+  const title = await browser.getUrl();
+  t.is(title, 'https://webdriver.io/docs/gettingstarted.html');
 });
 
-test('Check title #2', async (t) => {
-  await t.context.browser.url('https://google.com');
-  const title = await t.context.browser.getTitle();
-  t.is(title, 'Google');
+test('Check API reference', async (t) => {
+  const browser = t.context.browser;
+  await t.context.browser.url('https://webdriver.io/');
+  const page = new Landing();
+  await page.header.navigate(NavigationOptions.API);
+  const title = await browser.getUrl();
+  t.is(title, 'https://webdriver.io/docs/api.html');
 });
 
-test('Check title #3', async (t) => {
-  await t.context.browser.url('https://google.com');
-  const title = await t.context.browser.getTitle();
-  t.is(title, 'Google');
+test('Check Blog reference', async (t) => {
+  const browser = t.context.browser;
+  await t.context.browser.url('https://webdriver.io/');
+  const page = new Landing();
+  await page.header.navigate(NavigationOptions.Blog);
+  const title = await browser.getUrl();
+  t.is(title, 'https://webdriver.io/blog/');
 });
