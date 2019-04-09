@@ -1,11 +1,13 @@
-import { Element } from 'webdriverio';
+import { Element, Browser } from 'webdriverio';
 import pFilter from 'p-filter';
 
 export class Header {
   private readonly selector: string;
+  private readonly browser: Browser;
 
-  constructor(selector: string) {
+  constructor(selector: string, browser: Browser) {
     this.selector = selector;
+    this.browser = browser;
   }
 
   async navigate(to: NavigationOptions): Promise<void> {
@@ -23,7 +25,7 @@ export class Header {
   }
 
   private get navigation(): Promise<Array<Element>> {
-    return $$(`${this.selector} .nav-site-internal li`);
+    return this.browser.$$(`${this.selector} .nav-site-internal li`);
   }
 }
 

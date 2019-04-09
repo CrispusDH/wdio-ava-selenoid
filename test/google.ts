@@ -17,7 +17,7 @@ test.afterEach('Tear down', async (t) => {
 test('Check Guide reference', async (t) => {
   const browser = t.context.browser;
   await t.context.browser.url('https://webdriver.io/');
-  const page = new Landing();
+  const page = new Landing(browser);
   await page.header.navigate(NavigationOptions.Guide);
   const title = await browser.getUrl();
   t.is(title, 'https://webdriver.io/docs/gettingstarted.html');
@@ -26,7 +26,7 @@ test('Check Guide reference', async (t) => {
 test('Check API reference', async (t) => {
   const browser = t.context.browser;
   await t.context.browser.url('https://webdriver.io/');
-  const page = new Landing();
+  const page = new Landing(browser);
   await page.header.navigate(NavigationOptions.API);
   const title = await browser.getUrl();
   t.is(title, 'https://webdriver.io/docs/api.html');
@@ -35,7 +35,7 @@ test('Check API reference', async (t) => {
 test('Check Blog reference', async (t) => {
   const browser = t.context.browser;
   await t.context.browser.url('https://webdriver.io/');
-  const page = new Landing();
+  const page = new Landing(browser);
   await page.header.navigate(NavigationOptions.Blog);
   const title = await browser.getUrl();
   t.is(title, 'https://webdriver.io/blog/');
